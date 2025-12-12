@@ -19,6 +19,15 @@ The engine consists of three main components:
 2. **Edge**: Connects nodes with optional conditional logic
 3. **Workflow**: Manages the graph of nodes and orchestrates execution
 
+### Execution Model
+
+The workflow engine uses a breadth-first search (BFS) approach with the following behavior:
+
+- **Conditional Edges**: When multiple conditional edges exist from a node, only the **first matching edge** is followed. This enables if-elif-else style routing.
+- **Unconditional Edges**: If no conditional edges match, all unconditional edges are followed (enables fan-out patterns).
+- **State Management**: All nodes share a common state dictionary that is passed and updated during execution.
+- **Execution History**: The engine maintains a log of all node executions for debugging and monitoring.
+
 ## Installation
 
 ```bash

@@ -188,18 +188,32 @@ class Workflow:
         """
         Get the next nodes to execute based on edges and conditions.
         
+        For conditional edges: Returns the first matching edge only.
+        For unconditional edges: Returns all unconditional edges if no conditional edges match.
+        
         Args:
             current_node_id: Current node ID
             
         Returns:
             List of next node IDs to execute
         """
-        next_nodes = []
+        conditional_edges = []
+        unconditional_edges = []
+        
         for edge in self.edges:
             if edge.from_node == current_node_id:
-                if edge.should_traverse(self.state):
-                    next_nodes.append(edge.to_node)
-        return next_nodes
+                if edge.condition is not None:
+                    conditional_edges.append(edge)
+                else:
+                    unconditional_edges.append(edge)
+        
+        # Check conditional edges first - return the FIRST match only
+        for edge in conditional_edges:
+            if edge.should_traverse(self.state):
+                return [edge.to_node]
+        
+        # If no conditional edges matched, follow all unconditional edges
+        return [edge.to_node for edge in unconditional_edges]
     
     def execute(self, initial_state: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
         """
