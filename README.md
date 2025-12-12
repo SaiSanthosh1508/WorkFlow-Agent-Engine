@@ -44,14 +44,25 @@ pip install -r requirements.txt
 ### Running Examples
 
 ```bash
-# Run example workflows
+# Run basic examples
 python examples.py
+
+# Run advanced content moderation example
+python example_advanced.py
+
+# Test API with shell scripts (requires server to be running)
+./test_api.sh
+./test_conditional.sh
+./demo_pipeline.sh
 ```
 
 ### Starting the API Server
 
 ```bash
-# Start the FastAPI server
+# Simple startup script
+./start_server.sh
+
+# Or start directly
 python api.py
 
 # Or using uvicorn directly
@@ -291,12 +302,29 @@ result = workflow.execute({"input_data": [10, 20, 30, 40, 50]})
 
 ```
 WorkFlow-Agent-Engine/
-├── workflow_engine.py  # Core workflow engine (Node, Edge, Workflow)
-├── api.py             # FastAPI REST API
-├── examples.py        # Example workflows
-├── requirements.txt   # Python dependencies
-├── .gitignore        # Git ignore rules
-└── README.md         # This file
+├── workflow_engine.py     # Core workflow engine (Node, Edge, Workflow)
+├── api.py                 # FastAPI REST API
+├── examples.py            # Basic example workflows
+├── example_advanced.py    # Advanced content moderation example
+├── start_server.sh        # Simple server startup script
+├── test_api.sh           # API test script
+├── test_conditional.sh   # Conditional workflow test script
+├── demo_pipeline.sh      # Data pipeline demo script
+├── requirements.txt      # Python dependencies
+├── .gitignore           # Git ignore rules
+└── README.md            # This file
+```
+
+## Use Cases
+
+The Workflow Agent Engine is suitable for various applications:
+
+- **Content Moderation**: Route content through different review paths based on length, type, or other criteria
+- **Data Processing Pipelines**: Chain transformations, validations, and aggregations
+- **Business Process Automation**: Model approval workflows, decision trees, and multi-step processes
+- **Agent Workflows**: Orchestrate AI agents with conditional routing and state management
+- **ETL Processes**: Extract, transform, and load data with error handling and validation
+- **Form Processing**: Route form submissions through validation, enrichment, and storage steps
 ```
 
 ## Contributing
