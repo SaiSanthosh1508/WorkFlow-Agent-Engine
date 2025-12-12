@@ -2,6 +2,27 @@
 
 A simplified workflow engine similar to LangGraph that allows you to define, connect, and execute sequences of steps (nodes) with shared state management.
 
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                    Workflow Agent Engine                        │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│  ┌──────────┐         ┌──────────┐         ┌──────────┐       │
+│  │  Node 1  │────────▶│  Node 2  │────────▶│  Node 3  │       │
+│  │ (Start)  │         │(Process) │         │  (End)   │       │
+│  └──────────┘         └──────────┘         └──────────┘       │
+│       │                     │                                   │
+│       │ Condition?          │ Condition?                        │
+│       ▼                     ▼                                   │
+│  ┌──────────┐         ┌──────────┐                             │
+│  │  Node 4  │         │  Node 5  │                             │
+│  │ (Alt 1)  │         │ (Alt 2)  │                             │
+│  └──────────┘         └──────────┘                             │
+│                                                                 │
+│  Shared State: { key1: value1, key2: value2, ... }            │
+└─────────────────────────────────────────────────────────────────┘
+```
+
 ## Features
 
 - **Node-based Architecture**: Define individual steps as nodes with custom functions
@@ -54,6 +75,9 @@ python example_advanced.py
 ./test_api.sh
 ./test_conditional.sh
 ./demo_pipeline.sh
+
+# Run comprehensive test suite
+./run_tests.sh
 ```
 
 ### Starting the API Server
