@@ -40,13 +40,13 @@ The engine comes pre-seeded with the `summary-agent` workflow.
 
 The Workflow Logic:
 
-Split: Divides text into chunks.
+* Split: Divides text into chunks.
 
-Summarize: Generates summaries for each chunk.
+* Summarize: Generates summaries for each chunk.
 
-Merge: Combines chunk summaries.
+* Merge: Combines chunk summaries.
 
-Refine (Loop): Iteratively shortens the summary until it meets the specific length/sentence count criteria.
+* Refine (Loop): Iteratively shortens the summary until it meets the specific length/sentence count criteria.
 
 Step 1: Trigger the Workflow
 Run this command to send a long text to the agent:
