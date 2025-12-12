@@ -74,3 +74,25 @@ Use the run_id received above to check the status. The agent runs in the backgro
 ```bash
 curl "[http://127.0.0.1:8000/graph/run/](http://127.0.0.1:8000/graph/run/){YOUR_RUN_ID}"
 ```
+
+### ⚡ Advanced: Create Custom Graph via JSON
+The engine is dynamic. You can define new workflows without changing code by sending a JSON blueprint to /graph/create.
+
+Example: A Simple Split-Merge Pipeline (No Loop)
+
+```bash
+curl -X POST "[http://127.0.0.1:8000/graph/create](http://127.0.0.1:8000/graph/create)" \
+-H "Content-Type: application/json" \
+-d '{
+  "nodes": [
+    {"name": "step1", "tool_name": "split"},
+    {"name": "step2", "tool_name": "merge"}
+  ],
+  "edges": [
+    {"from_node": "step1", "to_node": "step2"}
+  ],
+  "start_node": "step1"
+}'
+```
+
+This returns a graph_id that you can use immediately in the /graph/run endpoint.
